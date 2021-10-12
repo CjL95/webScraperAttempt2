@@ -2,6 +2,25 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const pretty = require("pretty");
 const fs = require("fs");
+const path = require('path');
+
+//const directory = ;
+/*const subDir = 'scrapedData/content';
+
+fs.readdir(subDir, (err, files) => {
+  if (err) throw err;
+
+  for (const file of files) {
+    fs.unlink(path.join(subDir, file), err => {
+      if (err) throw err;
+    });
+  }*/
+  /*for (const file of files) {
+    fs.unlink(path.join('scrapedData', file), err => {
+      if (err) throw err;
+    });
+  }*/
+//});
 
 //pages to be scraped
 const urls = [
@@ -26,7 +45,7 @@ const urls = [
 		link: 'http://www.andnet.org/np-com_fac/'
 	},
 	{
-		name:'community-planning',
+		name:'community-planning', //5
 		link: 'http://www.andnet.org/community-planning/'
 	},
 	{
@@ -74,13 +93,13 @@ const urls = [
 ];
 
 //function that scrapes the data
-async function scrapeData(element){
+async function scrapeData(element, path){
 	try{
 			const {data} = await axios.get(element.link); //fetch page
 			const $ = cheerio.load(data); //load html from the page
+			var path;
 			//console.log(data);
-			console.log(typeof($('*').text()));
-			 fs.writeFile(`./scrapedData/${element.name}.txt`, $('*').text(), (err) => {
+			 fs.writeFile(path, (($("#contentWrapper").text()).match(/\w.+\n/gi).join('')).replace(/\u00a0/g, ' '), (err) => {
 	      		if (err) {
 	        		console.error(err);
 	        		return;
@@ -92,9 +111,63 @@ async function scrapeData(element){
 		console.log(err);
 	}
 }
-urls.forEach((element) =>{
-	scrapeData(element);
-});;
+async function scrapeHeaderFooter() {
+	try{
+		const {data} = await axios.get(urls[0].link);
+		const $ = cheerio.load(data);
+		fs.writeFile(`./scrapedData/sidebar.txt`, (($(".verticalNavigationBar").text()).match(/\w.+\n/gi).join('')).replace(/\u00a0/g, ' '), (err) => {
+  		if (err) {
+    		console.error(err);
+    		return;
+  		}
+  		console.log("Successfully written data to file");
+		});
+		fs.writeFile(`./scrapedData/footer.txt`, (($("#pageFooter").text()).match(/\w.+\n/gi).join('')).replace(/\u00a0/g, ' '), (err) => {
+  		if (err) {
+    		console.error(err);
+    		return;
+  		}
+  		console.log("Successfully written data to file");
+		});
+	}catch(err){
+		console.error(err);
+	}
+}
+/*async function seperateBody(element){
+	try{
+		const {data} = await axios.get(element.link); //fetch page
+		const $ = cheerio.load(data); //load html from the page
+		return (($('body').text()).match(/\w.+\n/gi).join('')).replace('SEARCH', 'SEARCH\n---BODY---\n');
+	}catch(err){
+		console.log(err);
+	}
+	
+}*/
+
+/*urls.forEach((element) =>{
+	let path = '';
+	scrapeData(element, path);
+	//seperateBody(element);
+});*/
+for(let i = 0; i < urls.length; i++){
+	let path = '';
+	if((i > 0 && i < 5) || i === 13){
+		//architecture
+		path = `./scrapedData/content/arch/${urls[i].name}/${urls[i].name}.txt`;
+	}else if(i > 4 && i < 13){
+		//community planning
+		path = `./scrapedData/content/arch/community-planning/${urls[i].name}/${urls[i].name}.txt`;
+	}else if(i > 13){
+		//about
+		path = `./scrapedData/content/about/${urls[i].name}/${urls[i].name}.txt`;
+
+	}else{
+		path = `./scrapedData/content/home/${urls[i].name}.txt`;
+	}
+	scrapeData(urls[i], path);
+}
+scrapeHeaderFooter();
+
 //tutorial below
 
 
@@ -129,3 +202,35 @@ const ul = $("ul");
 ul.append("<li>Banana</li>"); //inserted as last child
 ul.prepend("<li>Pineapple</li>"); //inserted as first child
 console.log(pretty($.html()));*/
+
+
+
+/*
+	if(element.link === 'http://www.andnet.org/architecture/' || 
+											'http://www.andnet.org/housing/' || 
+											'http://www.andnet.org/health-childcare-facilities/' || 
+											'http://www.andnet.org/np-com_fac/' 
+	){
+		console.log('architecture');
+		path = `./scrapedData/content/architecture/${element.name}.txt`;
+	}else if(element.link === 'http://www.andnet.org/community-planning/' ||
+														'http://www.andnet.org/cp_program-description/' ||
+														'http://www.andnet.org/cp_neighborhood-plan/' ||
+														'http://www.andnet.org/cp_design-for-public-spaces/' ||
+														'http://www.andnet.org/commercial-corridor-planning/' ||
+														'http://www.andnet.org/community-mapping-services/' ||
+														'http://www.andnet.org/citywide-policy/' ||
+														'http://www.andnet.org/community-built-projects/'
+	){
+		console.log('planning');
+		path = `./scrapedData/content/architecture/community-planning/${element.name}.txt`;
+	}else if(element.link === 'http://www.andnet.org/about/' ||
+														'http://www.andnet.org/staff/' ||
+														'http://www.andnet.org/login/'
+	){
+		console.log('about');
+		path = `./scrapedData/content/about/${element.name}.txt`;
+	}else{
+		console.log('home');
+		path = `./scrapedData/content/home/${element.name}.txt`;
+	}*/
