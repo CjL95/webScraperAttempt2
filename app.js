@@ -4,23 +4,6 @@ const pretty = require("pretty");
 const fs = require("fs");
 const path = require('path');
 const request = require('request');
-//const directory = ;
-/*const subDir = 'scrapedData/content';
-
-fs.readdir(subDir, (err, files) => {
-  if (err) throw err;
-
-  for (const file of files) {
-    fs.unlink(path.join(subDir, file), err => {
-      if (err) throw err;
-    });
-  }*/
-  /*for (const file of files) {
-    fs.unlink(path.join('scrapedData', file), err => {
-      if (err) throw err;
-    });
-  }*/
-//});
 
 //pages to be scraped
 const urls = [
@@ -111,8 +94,6 @@ async function scrapeData(element, path, imgPath){
 		  //downloads images
 			var download = function(uri, filename, imgPath, callback){
   			request.head(uri, function(err, res, body){
-	    		//console.log('content-type:', res.headers['content-type']);
-	    		//console.log('content-length:', res.headers['content-length']);
 	    		request(uri).pipe(fs.createWriteStream(imgPath + filename)).on('close', callback);
   			});
 			};
@@ -143,15 +124,6 @@ async function scrapeData(element, path, imgPath){
   			console.log('done');
 				});
 			 }
-			 
-			 /*fs.writeFile(imgPath, imgList.join('').replace(/\b\/storage/g, ' \n\n/storage'), (err) => {
-	      		if (err) {
-	        		console.error(err);
-	        		return;
-	      		}
-	      		console.log("Successfully written image to file");
-	    	});*/
-			//console.log(pretty($.html()));
 	} catch(err) {
 		console.log(err);
 	}
@@ -178,20 +150,6 @@ async function scrapeHeaderFooter() {
 		console.error(err);
 	}
 }
-/*async function seperateBody(element){
-	try{
-		const {data} = await axios.get(element.link); //fetch page
-		const $ = cheerio.load(data); //load html from the page
-		return (($('body').text()).match(/\w.+\n/gi).join('')).replace('SEARCH', 'SEARCH\n---BODY---\n');
-	}catch(err){
-		console.log(err);
-	}
-	
-}*/
-
-/*urls.forEach((element) =>{
-	let path = '';
-	scrapeData(element, path);
 	//seperateBody(element);
 });*/
 for(let i = 0; i < urls.length; i++){
