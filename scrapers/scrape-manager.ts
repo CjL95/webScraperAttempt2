@@ -4,7 +4,7 @@ import * as cheerio from "cheerio";
 let site = 'https://successcenters.org/';
 
 //function that initiates each scraper
-export const scrapeManager = async (menu: Function, body: Function) =>{
+export const scrapeManager = async (menu: Function, body: Function): Promise<void> =>{
     console.log('scrape manager fired'); //debug body scraper activated
     urls ? console.log('scrape manager can access urls') : console.log('scrape manager cannot access urls');
 	//iterate over the urls object and call the scrapers for each page
