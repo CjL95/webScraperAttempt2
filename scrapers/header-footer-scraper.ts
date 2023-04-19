@@ -1,4 +1,4 @@
-export const scrapeHeaderFooter = async (urls: any) =>{
+export const scrapeHeaderFooter = (urls: any) =>{
     console.log('head/foot scraper fired'); //debug body scraper activated
     urls ? console.log('head/foot can access urls') : console.log('head/foot cannot access urls');
 	/*try{
