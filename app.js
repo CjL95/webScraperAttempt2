@@ -119,9 +119,8 @@ async function scrapeData(element, path, imgPath){
 	      		console.log("Successfully written data to file");
 	    	});
 			 for(let i = 0; i < imgList.length; i++){
-
 			 	download(element.link + imgList[i].src, `${imgList[i].name}`,imgPath, function(){
-  			console.log('done');
+  					console.log('done');
 				});
 			 }
 	} catch(err) {
@@ -151,7 +150,6 @@ async function scrapeHeaderFooter() {
 	}
 }
 	//seperateBody(element);
-});*/
 for(let i = 0; i < urls.length; i++){
 	let path = '';
 	let imgPath = '';
@@ -177,70 +175,3 @@ for(let i = 0; i < urls.length; i++){
 
 }
 scrapeHeaderFooter();
-
-//tutorial below
-
-
-/*const markup = `
-<ul class="fruits">
-  <li class="fruits__mango"> Mango </li>
-  <li class="fruits__apple"> Apple </li>
-</ul>
-`;
-const $ = cheerio.load(markup);
-console.log(pretty($.html()));
-
-
-const mango = $(".fruits__mango");
-console.log(mango.html()); // Mango
-
-
-const apple = $(".fruits__apple");
-console.log(apple.attr("class")); //fruits__apple
-
-
-const listItems = $("li");
-console.log(listItems.length); // 2
-listItems.each(function (idx, el) {
-  console.log($(el).text());
-});
-// Mango
-// Apple
-
-//appending and prepending add things as children to the selected element
-const ul = $("ul");
-ul.append("<li>Banana</li>"); //inserted as last child
-ul.prepend("<li>Pineapple</li>"); //inserted as first child
-console.log(pretty($.html()));*/
-
-
-
-/*
-	if(element.link === 'http://www.andnet.org/architecture/' || 
-											'http://www.andnet.org/housing/' || 
-											'http://www.andnet.org/health-childcare-facilities/' || 
-											'http://www.andnet.org/np-com_fac/' 
-	){
-		console.log('architecture');
-		path = `./scrapedData/content/architecture/${element.name}.txt`;
-	}else if(element.link === 'http://www.andnet.org/community-planning/' ||
-														'http://www.andnet.org/cp_program-description/' ||
-														'http://www.andnet.org/cp_neighborhood-plan/' ||
-														'http://www.andnet.org/cp_design-for-public-spaces/' ||
-														'http://www.andnet.org/commercial-corridor-planning/' ||
-														'http://www.andnet.org/community-mapping-services/' ||
-														'http://www.andnet.org/citywide-policy/' ||
-														'http://www.andnet.org/community-built-projects/'
-	){
-		console.log('planning');
-		path = `./scrapedData/content/architecture/community-planning/${element.name}.txt`;
-	}else if(element.link === 'http://www.andnet.org/about/' ||
-														'http://www.andnet.org/staff/' ||
-														'http://www.andnet.org/login/'
-	){
-		console.log('about');
-		path = `./scrapedData/content/about/${element.name}.txt`;
-	}else{
-		console.log('home');
-		path = `./scrapedData/content/home/${element.name}.txt`;
-	}*/
