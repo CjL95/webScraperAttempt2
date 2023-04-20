@@ -1,46 +1,43 @@
-interface Urls{
-	[key: string]: {
-		uri?: string;
-		children?: Array<Object>;
-	}
-}
-export const urls: Urls = {
+
+export const urls: any = {
 	"Home": {
 		uri: '',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"AboutUs":{
-		uri: 'about-success-centers/',
-		children: [{
+		uri: 'about-successcenters/',
+		children: [{has: true}, {
 			name: 'This is Us',
-			uri: 'about-success-centers/this-is-us/'
+			uri: 'about-success-centers/this-is-us/',
+			children: [{has: false}, {}]
 		},
 		{
 			name: 'Our People',
-			uri: 'about-success-centers/our-people/'
+			uri: 'about-success-centers/our-people/',
+			children: [{has: false}, {}]
 		}
 		]
 	},
 	"Locations":{
 		uri: 'locations/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"Programs":{
 		uri: 'programs/',
-		children: [{
+		children: [{has: true}, {
 			name: 'Education',
 			uri: 'programs/education/',
-			children: []
+			children: [{has: false}, {}]
 		},
 		{
 			name: 'New Directions',
 			uri: 'programs/new-directions/',
-			children: []
+			children: [{has: false}, {}]
 		},
 		{
 			name: 'Equity Connections',
 			uri: 'programs/equity-connections/',
-			children: []
+			children: [{has: false}, {}]
 		},
 		{
 			name: 'Creativity',
@@ -53,66 +50,66 @@ export const urls: Urls = {
 		{
 			name: 'Dream Keepers',
 			uri: 'programs/dream-keepers/',
-			children: []
+			children: [{has: false}, {}]
 		},
 		{
 			name: 'Breaking Barriers',
 			uri: 'programs/breaking-barriers/',
-			children: []
+			children: [{has: false}, {}]
 		},
 		{
 			name: 'AND Housing',
 			uri: 'programs/and-housing/',
-			children: []
+			children: [{has: false}, {}]
 		},
 		]
 	},
 	"Employment":{
 		uri: 'employment/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"ForJobSeekers":{
 		uri: 'for-job-seekers/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"ForEmployers":{
 		uri: 'for-employers/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"HotJobs":{
 		uri: 'hot-jobs/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"Calendar":{
 		uri: 'news-events/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"GetInspired":{
 		uri: 'get-inspired/',
-		children: [{
+		children: [{has: true}, {
 			name: 'See Us',
 			uri: 'get-inspired/video/',
-			children: []
+			children: [{has: false}, {}]
 		}]
 	},
 	"SupportUs":{
 		uri: 'support-us/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"ContactUs":{
 		uri: 'contactus/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"LatestNews":{
 		uri: 'latest-news/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"WhatOthers Say":{
 		uri: 'what-others-say/',
-		children: []
+		children: [{has: false}, {}]
 	},
 	"ArtGallery":{
 		uri: 'art-gallery/',
-		children: []
+		children: [{has: false}, {}]
 	}
 };
