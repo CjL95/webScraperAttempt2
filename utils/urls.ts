@@ -28,7 +28,7 @@ A page with children:
 		]
 	},
 */
-//setup to scrape walmart as an example
+//setup to scrape an example
 export const urls: any = {  
 	"Home":{
 		uri: '',
