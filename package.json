@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node app.ts"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,13 @@
     "axios": "^0.22.0",
     "cheerio": "^1.0.0-rc.10",
     "pretty": "^2.0.0",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
+    "@types/node": "^18.18.6",
     "@types/pretty": "^2.0.1",
     "@types/request": "^2.48.8",
-    "typescript": "^5.0.4"
+    "typescript": "^5.2.2"
   }
 }
