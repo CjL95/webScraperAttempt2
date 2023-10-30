@@ -1,6 +1,6 @@
-import { scrapeManager } from './scrapers/scrape-manager';
-import { scrapeHeaderFooter } from './scrapers/header-footer-scraper';
-import { scrapeBody } from './scrapers/body-scraper';
+import { scrapeManager } from './scrapers/scrape-manager.ts';
+import { scrapeHeaderFooter } from './scrapers/header-footer-scraper.ts';
+import { scrapeBody } from './scrapers/body-scraper.ts';
 
 try{
     scrapeManager(scrapeHeaderFooter, scrapeBody)

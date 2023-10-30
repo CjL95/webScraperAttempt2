@@ -1,4 +1,12 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true
+    },
+    "esm": true // <--- this is the most important part
+  },
   "compilerOptions": {
     "target": "es2016",                                   
     "module": "commonjs",                               
@@ -6,6 +14,8 @@
     "esModuleInterop": true,                                                
     "forceConsistentCasingInFileNames": true,
     "strict": true,                                     
-    "skipLibCheck": true                            
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true                           
   }
 }
